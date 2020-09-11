@@ -1,0 +1,27 @@
+#rootBox{
+    -fx-spacing: 10;
+    -fx-font-size: 16;
+}
+VBox{
+    -fx-padding: 10;
+}
+HBox{
+    -fx-spacing: 10;
+}
+Label{
+    -fx-pref-width: 160;
+}
+
+.other{
+    -fx-pref-width: 150;
+}
+.combo{
+    -fx-pref-width:300;
+}
+#ButtonBox{
+    -fx-spacing: 50;
+    -fx-alignment: center;
+}
+Button{
+    -fx-pref-width: 80;
+}

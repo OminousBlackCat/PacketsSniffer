@@ -9,6 +9,8 @@ import org.pcap4j.core.Pcaps;
 
 import java.io.File;
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
 
 import static java.lang.Thread.dumpStack;
 import static java.lang.Thread.sleep;
@@ -18,21 +20,34 @@ public class SnifferTest {
     public static void main(String args[]){
 
         try {
-            InetAddress addr = InetAddress.getByName("10.201.36.163");
-            PcapNetworkInterface nif = Pcaps.getDevByAddress(addr);
-            int snapLen = 65536;
-            PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS;
-            int timeout = 10;
-            PcapHandle handle = nif.openLive(snapLen, mode, timeout);
-            FilePathHelper.createSavePath();
-            while (true){
-                //System.out.println(handle.getNextPacket());
-                PcapPacket temp = handle.getNextPacket();
-                if(temp != null){
-                    System.out.println(temp.getPacket());
-                    FileHelper.appendLine(FilePathHelper.PACKETSAVE_PATH + File.separator + "1.txt",temp);
+//            InetAddress addr = InetAddress.getByName("10.201.36.163");
+//            PcapNetworkInterface nif = Pcaps.getDevByAddress(addr);
+//            int snapLen = 65536;
+//            PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS;
+//            int timeout = 10;
+//            PcapHandle handle = nif.openLive(snapLen, mode, timeout);
+//            FilePathHelper.createSavePath();
+//            while (true){
+//                //System.out.println(handle.getNextPacket());
+//                PcapPacket temp = handle.getNextPacket();
+//                if(temp != null){
+//                    System.out.println(temp.getPacket());
+//                    FileHelper.appendLine(FilePathHelper.PACKETSAVE_PATH + File.separator + "1.txt",temp);
+//                }
+//                sleep(1000);
+//            }
+
+            Enumeration<NetworkInterface> netInterfaces;
+            netInterfaces = NetworkInterface.getNetworkInterfaces();
+            while (netInterfaces.hasMoreElements()) {
+                NetworkInterface ni = netInterfaces.nextElement();
+                Enumeration<InetAddress> addresses = ni.getInetAddresses();
+                while (addresses.hasMoreElements()) {
+                    InetAddress ip = addresses.nextElement();
+                    if (!ip.isLoopbackAddress() && ip.getHostAddress().indexOf(':') == -1) {
+                        System.out.println(ni.getName() + " " + ip.getHostAddress());
+                    }
                 }
-                sleep(1000);
             }
         }catch (Exception e){
             e.printStackTrace();

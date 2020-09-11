@@ -16,6 +16,7 @@ public class CONFIG {
     private PcapNetworkInterface.PromiscuousMode mode;
 
 
+
     private CONFIG(){}
 
     /**

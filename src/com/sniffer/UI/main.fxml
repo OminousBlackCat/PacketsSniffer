@@ -1,9 +1,28 @@
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<GridPane fx:controller="com.sniffer.UI.Controller"
-          stylesheets="@style.css"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<VBox fx:controller="com.sniffer.UI.Controller"
+      stylesheets="@style.css"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:id="rootBox">
+    <HBox fx:id="menuBox">
+        <Button text="设置" fx:id="configButton"/>
+        <Button text="保存文件夹" fx:id="saveDirectoryButton"/>
+        <Label text="2020年9月11日19:52:00" fx:id="timeLabel"/>
+        <Button text="暂停" fx:id="pauseButton"/>
+    </HBox>
+
+    <HBox fx:id="mainBox">
+        <ListView fx:id="mainList"/>
+        <VBox fx:id="sideBox">
+            <VBox fx:id="filterBox">
+                <Label text="过滤器"/>
+            </VBox>
+            <VBox fx:id="informationBox">
+                <Label text="详细信息"/>
+            </VBox>
+        </VBox>
+    </HBox>
+</VBox>
