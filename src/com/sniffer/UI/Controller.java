@@ -9,9 +9,11 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import org.pcap4j.core.PcapPacket;
 
 import java.util.ArrayList;
@@ -57,6 +59,13 @@ public class Controller {
     public void init(){
 
         bindSize();
+        mainList.setCellFactory(new Callback<ListView<PcapPacket>, ListCell<PcapPacket>>() {
+            @Override
+            public ListCell call(ListView param) {
+                return new PcapListCell();
+            }
+        });
+
         mainList.setItems(observableList);
         repo = PacketRepository.getInstance();
 

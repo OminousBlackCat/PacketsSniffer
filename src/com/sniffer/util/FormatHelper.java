@@ -1,6 +1,8 @@
 package com.sniffer.util;
 
 
+import org.pcap4j.core.PcapPacket;
+
 /**
  * 使用此类来包装所有与格式检查与转换的操作
  * @author wxy
@@ -45,4 +47,15 @@ public class FormatHelper {
         }
         return (check>=10&&check<=10000);
     }
+
+    public static boolean isIpv4Packet(PcapPacket packet){
+        String temp = packet.getPacket().getPayload().getHeader().toString();
+        String[] parseHeader = temp.split("\r\n");
+        System.out.println(parseHeader[0]);
+        String[] parseVersion = parseHeader[0].split(" ");
+        if(parseVersion[0].equals("[IPv6"))
+            return false;
+        return true;
+    }
+
 }
