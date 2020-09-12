@@ -11,7 +11,7 @@
         <Button text="设置" fx:id="configButton"/>
         <Button text="保存文件夹" fx:id="saveDirectoryButton"/>
         <Label text="2020年9月11日19:52:00" fx:id="timeLabel"/>
-        <Button text="暂停" fx:id="pauseButton"/>
+        <Button text="暂停" fx:id="pauseButton" onAction="#onPause"/>
     </HBox>
 
     <HBox fx:id="mainBox">

@@ -22,7 +22,7 @@ public class Main extends Application {
         Parent root = fxmlLoader.load();
 
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Packet Sniffer");
         primaryStage.setScene(new Scene(root, 1300, 800));
         primaryStage.show();
 

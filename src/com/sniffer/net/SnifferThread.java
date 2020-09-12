@@ -1,11 +1,11 @@
 package com.sniffer.net;
 
 import com.sniffer.UI.configWindow.CONFIG;
-import org.pcap4j.core.PcapHandle;
-import org.pcap4j.core.PcapNativeException;
-import org.pcap4j.core.PcapNetworkInterface;
-import org.pcap4j.core.Pcaps;
+import com.sniffer.util.FileHelper;
+import com.sniffer.util.FilePathHelper;
+import org.pcap4j.core.*;
 
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -20,9 +20,12 @@ public class SnifferThread extends Thread {
     private PcapNetworkInterface sniffer;
     private PcapHandle mainHandle;
     private PcapNetworkInterface.PromiscuousMode mode;
+    private PacketRepository repository;
     private int snapLen = 65536;
     private int timeout = 10;
-    private int localPacketNumber = 2000;
+    private int count = 0;
+    private int fileCount = 1;
+    private boolean isPause = false;
 
     private CONFIG config;
 
@@ -35,6 +38,7 @@ public class SnifferThread extends Thread {
      * */
     public SnifferThread() throws PcapNativeException,UnknownHostException{
         readConfig();
+        repository = PacketRepository.getInstance();
         sniffer = Pcaps.getDevByAddress(ip);
         mainHandle = sniffer.openLive(snapLen,mode,timeout);
     }
@@ -47,10 +51,35 @@ public class SnifferThread extends Thread {
         timeout = config.getTimeout();
     }
 
+    public void changeFlag(){
+        isPause = !isPause;
+    }
+    public boolean isPause(){
+        return isPause;
+    }
+
     @Override
     public void run(){
-
-
-
+        try {
+            while (true){
+                if(!isPause){
+                    PcapPacket temp = mainHandle.getNextPacket();
+                    if(temp != null){
+                        count ++;
+                        if(count > config.getRepoNumber()){
+                            count = 0;
+                            fileCount ++;
+                            repository.clearRepo();
+                        }
+                        repository.addItem(temp);
+                        FileHelper.appendLine(FilePathHelper.PACKETSAVE_PATH + File.separator +Integer.toString(fileCount)+ ".txt",temp);
+                    }
+                }else {
+                    PcapPacket temp = mainHandle.getNextPacket();
+                }
+            }
+        }catch (Exception noe){
+            noe.printStackTrace();
+        }
     }
 }

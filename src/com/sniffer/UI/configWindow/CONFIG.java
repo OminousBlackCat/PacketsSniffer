@@ -10,10 +10,11 @@ import org.pcap4j.core.PcapNetworkInterface;
  */
 public class CONFIG {
     private static CONFIG instance = new CONFIG();
-    private String ipAddress;
-    private int snapLen;
-    private int timeout;
-    private PcapNetworkInterface.PromiscuousMode mode;
+    private String ipAddress = "10.203.156.33";
+    private int snapLen = 65536;
+    private int timeout = 1000;
+    private PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS;
+    private int repoNumber = 1000;
 
 
 
@@ -57,5 +58,13 @@ public class CONFIG {
 
     public void setMode(PcapNetworkInterface.PromiscuousMode mode) {
         this.mode = mode;
+    }
+
+    public int getRepoNumber() {
+        return repoNumber;
+    }
+
+    public void setRepoNumber(int repoNumber) {
+        this.repoNumber = repoNumber;
     }
 }
