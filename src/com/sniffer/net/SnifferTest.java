@@ -7,14 +7,12 @@ import org.pcap4j.core.PcapHandle;
 import org.pcap4j.core.PcapNetworkInterface;
 import org.pcap4j.core.PcapPacket;
 import org.pcap4j.core.Pcaps;
-
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 import java.util.Properties;
-
 import static java.lang.Thread.dumpStack;
 import static java.lang.Thread.sleep;
 

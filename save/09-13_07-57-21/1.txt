@@ -1,0 +1,585 @@
+2020-09-13T11:57:25.032126Z
+[Ethernet Header (14 bytes)]
+  Destination address: 33:33:00:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x86dd (IPv6)
+[IPv6 Header (40 bytes)]
+  Version: 6 (IPv6)
+  Traffic Class: 0x00
+  Flow Label: 0x00000
+  Payload length: 36 [bytes]
+  Next Header: 0 (IPv6 Hop-by-Hop Option)
+  Hop Limit: 1
+  Source address: /fe80:0:0:0:612f:6aca:3292:4566
+  Destination address: /ff02:0:0:0:0:0:0:16
+[IPv6 Hop-by-Hop Options Header (6 bytes)]
+  Next Header: 58 (ICMPv6)
+  Hdr Ext Len: 0 (8 [bytes])
+  Options: 
+    [Option Type: 0x05 (Router Alert)] [Option Data Len: 2 bytes] [Option Data: 0x0000]
+[ICMPv6 Common Header (4 bytes)]
+  Type: 1 (Destination Unreachable)
+  Code: 0 (no route to destination)
+  Checksum: 0x8f00
+[ICMPv6 Destination Unreachable Header (4 bytes)]
+  Unused: 756350976
+[Illegal Packet (22 bytes)]
+  Hex stream: 00 01 03 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03
+  Cause: org.pcap4j.packet.IllegalRawDataException: The data is too short to build an IPv6 header(40 bytes). data: 33 33 00 00 00 16 00 50 56 c0 00 01 86 dd 60 00 00 00 00 24 00 01 fe 80 00 00 00 00 00 00 61 2f 6a ca 32 92 45 66 ff 02 00 00 00 00 00 00 00 00 00 00 00 00 00 16 3a 00 05 02 00 00 01 00 8f 00 2d 15 00 00 00 01 03 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03, offset: 68, length: 22
+
+2020-09-13T11:57:25.032133Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (24 bytes)]
+  Version: 4 (IPv4)
+  IHL: 6 (24 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 40 [bytes]
+  Identification: 559
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 2 (IGMP)
+  Header checksum: 0x96e0
+  Source address: /192.168.235.1
+  Destination address: /224.0.0.22
+  Option: [option-type: 148 (Router Alert)] [option-length: 4 bytes] [option-data: 0x0000]
+[data (16 bytes)]
+  Hex stream: 22 00 fa 01 00 00 00 01 03 00 00 00 e0 00 00 fc
+
+2020-09-13T11:57:25.057806Z
+[Ethernet Header (14 bytes)]
+  Destination address: 33:33:00:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x86dd (IPv6)
+[IPv6 Header (40 bytes)]
+  Version: 6 (IPv6)
+  Traffic Class: 0x00
+  Flow Label: 0x00000
+  Payload length: 36 [bytes]
+  Next Header: 0 (IPv6 Hop-by-Hop Option)
+  Hop Limit: 1
+  Source address: /fe80:0:0:0:612f:6aca:3292:4566
+  Destination address: /ff02:0:0:0:0:0:0:16
+[IPv6 Hop-by-Hop Options Header (6 bytes)]
+  Next Header: 58 (ICMPv6)
+  Hdr Ext Len: 0 (8 [bytes])
+  Options: 
+    [Option Type: 0x05 (Router Alert)] [Option Data Len: 2 bytes] [Option Data: 0x0000]
+[ICMPv6 Common Header (4 bytes)]
+  Type: 1 (Destination Unreachable)
+  Code: 0 (no route to destination)
+  Checksum: 0x8f00
+[ICMPv6 Destination Unreachable Header (4 bytes)]
+  Unused: 739573760
+[Illegal Packet (22 bytes)]
+  Hex stream: 00 01 04 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03
+  Cause: org.pcap4j.packet.IllegalRawDataException: The data is too short to build an IPv6 header(40 bytes). data: 33 33 00 00 00 16 00 50 56 c0 00 01 86 dd 60 00 00 00 00 24 00 01 fe 80 00 00 00 00 00 00 61 2f 6a ca 32 92 45 66 ff 02 00 00 00 00 00 00 00 00 00 00 00 00 00 16 3a 00 05 02 00 00 01 00 8f 00 2c 15 00 00 00 01 04 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03, offset: 68, length: 22
+
+2020-09-13T11:57:25.057890Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 165 [bytes]
+  Identification: 32154
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 4
+  Protocol: 17 (UDP)
+  Header checksum: 0x9d09
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 63365 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 145 [bytes]
+  Checksum: 0x7217
+[data (137 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 6f 73 74 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 53 54 3a 20 75 72 6e 3a 73 63 68 65 6d 61 73 2d 75 70 6e 70 2d 6f 72 67 3a 64 65 76 69 63 65 3a 49 6e 74 65 72 6e 65 74 47 61 74 65 77 61 79 44 65 76 69 63 65 3a 31 0d 0a 4d 61 6e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 33 0d 0a 0d 0a
+
+2020-09-13T11:57:25.057980Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (24 bytes)]
+  Version: 4 (IPv4)
+  IHL: 6 (24 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 40 [bytes]
+  Identification: 560
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 2 (IGMP)
+  Header checksum: 0x96df
+  Source address: /192.168.235.1
+  Destination address: /224.0.0.22
+  Option: [option-type: 148 (Router Alert)] [option-length: 4 bytes] [option-data: 0x0000]
+[data (16 bytes)]
+  Hex stream: 22 00 f9 01 00 00 00 01 04 00 00 00 e0 00 00 fc
+
+2020-09-13T11:57:25.058287Z
+[Ethernet Header (14 bytes)]
+  Destination address: 33:33:00:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x86dd (IPv6)
+[IPv6 Header (40 bytes)]
+  Version: 6 (IPv6)
+  Traffic Class: 0x00
+  Flow Label: 0x00000
+  Payload length: 36 [bytes]
+  Next Header: 0 (IPv6 Hop-by-Hop Option)
+  Hop Limit: 1
+  Source address: /fe80:0:0:0:612f:6aca:3292:4566
+  Destination address: /ff02:0:0:0:0:0:0:16
+[IPv6 Hop-by-Hop Options Header (6 bytes)]
+  Next Header: 58 (ICMPv6)
+  Hdr Ext Len: 0 (8 [bytes])
+  Options: 
+    [Option Type: 0x05 (Router Alert)] [Option Data Len: 2 bytes] [Option Data: 0x0000]
+[ICMPv6 Common Header (4 bytes)]
+  Type: 1 (Destination Unreachable)
+  Code: 0 (no route to destination)
+  Checksum: 0x8f00
+[ICMPv6 Destination Unreachable Header (4 bytes)]
+  Unused: 756350976
+[Illegal Packet (22 bytes)]
+  Hex stream: 00 01 03 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03
+  Cause: org.pcap4j.packet.IllegalRawDataException: The data is too short to build an IPv6 header(40 bytes). data: 33 33 00 00 00 16 00 50 56 c0 00 01 86 dd 60 00 00 00 00 24 00 01 fe 80 00 00 00 00 00 00 61 2f 6a ca 32 92 45 66 ff 02 00 00 00 00 00 00 00 00 00 00 00 00 00 16 3a 00 05 02 00 00 01 00 8f 00 2d 15 00 00 00 01 03 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03, offset: 68, length: 22
+
+2020-09-13T11:57:25.058378Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (24 bytes)]
+  Version: 4 (IPv4)
+  IHL: 6 (24 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 40 [bytes]
+  Identification: 561
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 2 (IGMP)
+  Header checksum: 0x96de
+  Source address: /192.168.235.1
+  Destination address: /224.0.0.22
+  Option: [option-type: 148 (Router Alert)] [option-length: 4 bytes] [option-data: 0x0000]
+[data (16 bytes)]
+  Hex stream: 22 00 fa 01 00 00 00 01 03 00 00 00 e0 00 00 fc
+
+2020-09-13T11:57:25.058559Z
+[Ethernet Header (14 bytes)]
+  Destination address: 33:33:00:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x86dd (IPv6)
+[IPv6 Header (40 bytes)]
+  Version: 6 (IPv6)
+  Traffic Class: 0x00
+  Flow Label: 0x00000
+  Payload length: 36 [bytes]
+  Next Header: 0 (IPv6 Hop-by-Hop Option)
+  Hop Limit: 1
+  Source address: /fe80:0:0:0:612f:6aca:3292:4566
+  Destination address: /ff02:0:0:0:0:0:0:16
+[IPv6 Hop-by-Hop Options Header (6 bytes)]
+  Next Header: 58 (ICMPv6)
+  Hdr Ext Len: 0 (8 [bytes])
+  Options: 
+    [Option Type: 0x05 (Router Alert)] [Option Data Len: 2 bytes] [Option Data: 0x0000]
+[ICMPv6 Common Header (4 bytes)]
+  Type: 1 (Destination Unreachable)
+  Code: 0 (no route to destination)
+  Checksum: 0x8f00
+[ICMPv6 Destination Unreachable Header (4 bytes)]
+  Unused: 739573760
+[Illegal Packet (22 bytes)]
+  Hex stream: 00 01 04 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03
+  Cause: org.pcap4j.packet.IllegalRawDataException: The data is too short to build an IPv6 header(40 bytes). data: 33 33 00 00 00 16 00 50 56 c0 00 01 86 dd 60 00 00 00 00 24 00 01 fe 80 00 00 00 00 00 00 61 2f 6a ca 32 92 45 66 ff 02 00 00 00 00 00 00 00 00 00 00 00 00 00 16 3a 00 05 02 00 00 01 00 8f 00 2c 15 00 00 00 01 04 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03, offset: 68, length: 22
+
+2020-09-13T11:57:25.058744Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (24 bytes)]
+  Version: 4 (IPv4)
+  IHL: 6 (24 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 40 [bytes]
+  Identification: 562
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 2 (IGMP)
+  Header checksum: 0x96dd
+  Source address: /192.168.235.1
+  Destination address: /224.0.0.22
+  Option: [option-type: 148 (Router Alert)] [option-length: 4 bytes] [option-data: 0x0000]
+[data (16 bytes)]
+  Hex stream: 22 00 f9 01 00 00 00 01 04 00 00 00 e0 00 00 fc
+
+2020-09-13T11:57:25.060850Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:00:00:fb
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 70 [bytes]
+  Identification: 50893
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 17 (UDP)
+  Header checksum: 0x6634
+  Source address: /192.168.235.1
+  Destination address: /224.0.0.251
+[UDP Header (8 bytes)]
+  Source port: 5353 (unknown)
+  Destination port: 5353 (unknown)
+  Length: 50 [bytes]
+  Checksum: 0xa21d
+[data (42 bytes)]
+  Hex stream: 00 00 00 00 00 01 00 00 00 00 00 00 12 4c 6f 73 74 2d 42 6c 61 63 6b 43 61 74 2d 43 68 65 6e 05 6c 6f 63 61 6c 00 00 ff 00 01
+
+2020-09-13T11:57:25.062206Z
+[Ethernet Header (14 bytes)]
+  Destination address: 33:33:00:00:00:fb
+  Source address: 00:50:56:c0:00:01
+  Type: 0x86dd (IPv6)
+[IPv6 Header (40 bytes)]
+  Version: 6 (IPv6)
+  Traffic Class: 0x00
+  Flow Label: 0x99f95
+  Payload length: 50 [bytes]
+  Next Header: 17 (UDP)
+  Hop Limit: 1
+  Source address: /fe80:0:0:0:612f:6aca:3292:4566
+  Destination address: /ff02:0:0:0:0:0:0:fb
+[UDP Header (8 bytes)]
+  Source port: 5353 (unknown)
+  Destination port: 5353 (unknown)
+  Length: 50 [bytes]
+  Checksum: 0xec52
+[data (42 bytes)]
+  Hex stream: 00 00 00 00 00 01 00 00 00 00 00 00 12 4c 6f 73 74 2d 42 6c 61 63 6b 43 61 74 2d 43 68 65 6e 05 6c 6f 63 61 6c 00 00 ff 00 01
+
+2020-09-13T11:57:25.063347Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:00:00:fb
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 108 [bytes]
+  Identification: 50894
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 17 (UDP)
+  Header checksum: 0x660d
+  Source address: /192.168.235.1
+  Destination address: /224.0.0.251
+[UDP Header (8 bytes)]
+  Source port: 5353 (unknown)
+  Destination port: 5353 (unknown)
+  Length: 88 [bytes]
+  Checksum: 0x6ffa
+[data (80 bytes)]
+  Hex stream: 00 00 84 00 00 00 00 02 00 00 00 00 12 4c 6f 73 74 2d 42 6c 61 63 6b 43 61 74 2d 43 68 65 6e 05 6c 6f 63 61 6c 00 00 1c 00 01 00 00 00 3c 00 10 fe 80 00 00 00 00 00 00 61 2f 6a ca 32 92 45 66 c0 0c 00 01 00 01 00 00 00 3c 00 04 c0 a8 eb 01
+
+2020-09-13T11:57:25.063470Z
+[Ethernet Header (14 bytes)]
+  Destination address: 33:33:00:00:00:fb
+  Source address: 00:50:56:c0:00:01
+  Type: 0x86dd (IPv6)
+[IPv6 Header (40 bytes)]
+  Version: 6 (IPv6)
+  Traffic Class: 0x00
+  Flow Label: 0x99f95
+  Payload length: 88 [bytes]
+  Next Header: 17 (UDP)
+  Hop Limit: 1
+  Source address: /fe80:0:0:0:612f:6aca:3292:4566
+  Destination address: /ff02:0:0:0:0:0:0:fb
+[UDP Header (8 bytes)]
+  Source port: 5353 (unknown)
+  Destination port: 5353 (unknown)
+  Length: 88 [bytes]
+  Checksum: 0xba2f
+[data (80 bytes)]
+  Hex stream: 00 00 84 00 00 00 00 02 00 00 00 00 12 4c 6f 73 74 2d 42 6c 61 63 6b 43 61 74 2d 43 68 65 6e 05 6c 6f 63 61 6c 00 00 1c 00 01 00 00 00 3c 00 10 fe 80 00 00 00 00 00 00 61 2f 6a ca 32 92 45 66 c0 0c 00 01 00 01 00 00 00 3c 00 04 c0 a8 eb 01
+
+2020-09-13T11:57:25.453878Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (24 bytes)]
+  Version: 4 (IPv4)
+  IHL: 6 (24 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 40 [bytes]
+  Identification: 563
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 2 (IGMP)
+  Header checksum: 0x96dc
+  Source address: /192.168.235.1
+  Destination address: /224.0.0.22
+  Option: [option-type: 148 (Router Alert)] [option-length: 4 bytes] [option-data: 0x0000]
+[data (16 bytes)]
+  Hex stream: 22 00 f9 01 00 00 00 01 04 00 00 00 e0 00 00 fc
+
+2020-09-13T11:57:25.454185Z
+[Ethernet Header (14 bytes)]
+  Destination address: 33:33:00:00:00:16
+  Source address: 00:50:56:c0:00:01
+  Type: 0x86dd (IPv6)
+[IPv6 Header (40 bytes)]
+  Version: 6 (IPv6)
+  Traffic Class: 0x00
+  Flow Label: 0x00000
+  Payload length: 36 [bytes]
+  Next Header: 0 (IPv6 Hop-by-Hop Option)
+  Hop Limit: 1
+  Source address: /fe80:0:0:0:612f:6aca:3292:4566
+  Destination address: /ff02:0:0:0:0:0:0:16
+[IPv6 Hop-by-Hop Options Header (6 bytes)]
+  Next Header: 58 (ICMPv6)
+  Hdr Ext Len: 0 (8 [bytes])
+  Options: 
+    [Option Type: 0x05 (Router Alert)] [Option Data Len: 2 bytes] [Option Data: 0x0000]
+[ICMPv6 Common Header (4 bytes)]
+  Type: 1 (Destination Unreachable)
+  Code: 0 (no route to destination)
+  Checksum: 0x8f00
+[ICMPv6 Destination Unreachable Header (4 bytes)]
+  Unused: 739573760
+[Illegal Packet (22 bytes)]
+  Hex stream: 00 01 04 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03
+  Cause: org.pcap4j.packet.IllegalRawDataException: The data is too short to build an IPv6 header(40 bytes). data: 33 33 00 00 00 16 00 50 56 c0 00 01 86 dd 60 00 00 00 00 24 00 01 fe 80 00 00 00 00 00 00 61 2f 6a ca 32 92 45 66 ff 02 00 00 00 00 00 00 00 00 00 00 00 00 00 16 3a 00 05 02 00 00 01 00 8f 00 2c 15 00 00 00 01 04 00 00 00 ff 02 00 00 00 00 00 00 00 00 00 00 00 01 00 03, offset: 68, length: 22
+
+2020-09-13T11:57:26.570696Z
+[Ethernet Header (14 bytes)]
+  Destination address: ff:ff:ff:ff:ff:ff
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 247 [bytes]
+  Identification: 53704
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 128
+  Protocol: 17 (UDP)
+  Header checksum: 0x0fdb
+  Source address: /192.168.235.1
+  Destination address: /192.168.235.255
+[UDP Header (8 bytes)]
+  Source port: 138 (NETBIOS Datagram Service)
+  Destination port: 138 (NETBIOS Datagram Service)
+  Length: 227 [bytes]
+  Checksum: 0xd18c
+[data (219 bytes)]
+  Hex stream: 11 02 fe 6f c0 a8 eb 01 00 8a 00 cd 00 00 20 45 4d 45 50 46 44 46 45 43 4e 45 43 45 4d 45 42 45 44 45 4c 45 44 45 42 46 45 43 4e 45 44 43 41 00 20 46 48 45 50 46 43 45 4c 45 48 46 43 45 50 46 46 46 41 43 41 43 41 43 41 43 41 43 41 43 41 42 4e 00 ff 53 4d 42 25 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 11 00 00 33 00 00 00 00 00 00 00 00 00 e8 03 00 00 00 00 00 00 00 00 33 00 56 00 03 00 01 00 00 00 02 00 44 00 5c 4d 41 49 4c 53 4c 4f 54 5c 42 52 4f 57 53 45 00 01 00 80 fc 0a 00 4c 4f 53 54 2d 42 4c 41 43 4b 43 41 54 2d 43 00 0a 00 07 10 00 00 0f 01 55 aa d7 a8 b4 f2 d0 c7 c1 ab b4 ac b5 c4 c0 b1 bc a6 b1 be 00
+
+2020-09-13T11:57:28.059376Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 165 [bytes]
+  Identification: 32155
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 4
+  Protocol: 17 (UDP)
+  Header checksum: 0x9d08
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 63365 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 145 [bytes]
+  Checksum: 0x7217
+[data (137 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 6f 73 74 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 53 54 3a 20 75 72 6e 3a 73 63 68 65 6d 61 73 2d 75 70 6e 70 2d 6f 72 67 3a 64 65 76 69 63 65 3a 49 6e 74 65 72 6e 65 74 47 61 74 65 77 61 79 44 65 76 69 63 65 3a 31 0d 0a 4d 61 6e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 33 0d 0a 0d 0a
+
+2020-09-13T11:57:30.145484Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 202 [bytes]
+  Identification: 32156
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 17 (UDP)
+  Header checksum: 0x9fe2
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 57436 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 182 [bytes]
+  Checksum: 0x7867
+[data (174 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 4f 53 54 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 4d 41 4e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 31 0d 0a 53 54 3a 20 75 72 6e 3a 64 69 61 6c 2d 6d 75 6c 74 69 73 63 72 65 65 6e 2d 6f 72 67 3a 73 65 72 76 69 63 65 3a 64 69 61 6c 3a 31 0d 0a 55 53 45 52 2d 41 47 45 4e 54 3a 20 47 6f 6f 67 6c 65 20 43 68 72 6f 6d 65 2f 38 35 2e 30 2e 34 31 38 33 2e 31 30 32 20 57 69 6e 64 6f 77 73 0d 0a 0d 0a
+
+2020-09-13T11:57:31.061043Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 165 [bytes]
+  Identification: 32157
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 4
+  Protocol: 17 (UDP)
+  Header checksum: 0x9d06
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 63365 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 145 [bytes]
+  Checksum: 0x7217
+[data (137 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 6f 73 74 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 53 54 3a 20 75 72 6e 3a 73 63 68 65 6d 61 73 2d 75 70 6e 70 2d 6f 72 67 3a 64 65 76 69 63 65 3a 49 6e 74 65 72 6e 65 74 47 61 74 65 77 61 79 44 65 76 69 63 65 3a 31 0d 0a 4d 61 6e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 33 0d 0a 0d 0a
+
+2020-09-13T11:57:31.146611Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 202 [bytes]
+  Identification: 32158
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 17 (UDP)
+  Header checksum: 0x9fe0
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 57436 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 182 [bytes]
+  Checksum: 0x7867
+[data (174 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 4f 53 54 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 4d 41 4e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 31 0d 0a 53 54 3a 20 75 72 6e 3a 64 69 61 6c 2d 6d 75 6c 74 69 73 63 72 65 65 6e 2d 6f 72 67 3a 73 65 72 76 69 63 65 3a 64 69 61 6c 3a 31 0d 0a 55 53 45 52 2d 41 47 45 4e 54 3a 20 47 6f 6f 67 6c 65 20 43 68 72 6f 6d 65 2f 38 35 2e 30 2e 34 31 38 33 2e 31 30 32 20 57 69 6e 64 6f 77 73 0d 0a 0d 0a
+
+2020-09-13T11:57:32.146883Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 202 [bytes]
+  Identification: 32159
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 17 (UDP)
+  Header checksum: 0x9fdf
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 57436 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 182 [bytes]
+  Checksum: 0x7867
+[data (174 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 4f 53 54 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 4d 41 4e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 31 0d 0a 53 54 3a 20 75 72 6e 3a 64 69 61 6c 2d 6d 75 6c 74 69 73 63 72 65 65 6e 2d 6f 72 67 3a 73 65 72 76 69 63 65 3a 64 69 61 6c 3a 31 0d 0a 55 53 45 52 2d 41 47 45 4e 54 3a 20 47 6f 6f 67 6c 65 20 43 68 72 6f 6d 65 2f 38 35 2e 30 2e 34 31 38 33 2e 31 30 32 20 57 69 6e 64 6f 77 73 0d 0a 0d 0a
+
+2020-09-13T11:57:33.147730Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 202 [bytes]
+  Identification: 32160
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 1
+  Protocol: 17 (UDP)
+  Header checksum: 0x9fde
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 57436 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 182 [bytes]
+  Checksum: 0x7867
+[data (174 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 4f 53 54 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 4d 41 4e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 31 0d 0a 53 54 3a 20 75 72 6e 3a 64 69 61 6c 2d 6d 75 6c 74 69 73 63 72 65 65 6e 2d 6f 72 67 3a 73 65 72 76 69 63 65 3a 64 69 61 6c 3a 31 0d 0a 55 53 45 52 2d 41 47 45 4e 54 3a 20 47 6f 6f 67 6c 65 20 43 68 72 6f 6d 65 2f 38 35 2e 30 2e 34 31 38 33 2e 31 30 32 20 57 69 6e 64 6f 77 73 0d 0a 0d 0a
+
+2020-09-13T11:57:34.068657Z
+[Ethernet Header (14 bytes)]
+  Destination address: 01:00:5e:7f:ff:fa
+  Source address: 00:50:56:c0:00:01
+  Type: 0x0800 (IPv4)
+[IPv4 Header (20 bytes)]
+  Version: 4 (IPv4)
+  IHL: 5 (20 [bytes])
+  TOS: [precedence: 0 (Routine)] [tos: 0 (Default)] [mbz: 0]
+  Total length: 165 [bytes]
+  Identification: 32161
+  Flags: (Reserved, Don't Fragment, More Fragment) = (false, false, false)
+  Fragment offset: 0 (0 [bytes])
+  TTL: 4
+  Protocol: 17 (UDP)
+  Header checksum: 0x9d02
+  Source address: /192.168.235.1
+  Destination address: /239.255.255.250
+[UDP Header (8 bytes)]
+  Source port: 63365 (unknown)
+  Destination port: 1900 (unknown)
+  Length: 145 [bytes]
+  Checksum: 0x7217
+[data (137 bytes)]
+  Hex stream: 4d 2d 53 45 41 52 43 48 20 2a 20 48 54 54 50 2f 31 2e 31 0d 0a 48 6f 73 74 3a 20 32 33 39 2e 32 35 35 2e 32 35 35 2e 32 35 30 3a 31 39 30 30 0d 0a 53 54 3a 20 75 72 6e 3a 73 63 68 65 6d 61 73 2d 75 70 6e 70 2d 6f 72 67 3a 64 65 76 69 63 65 3a 49 6e 74 65 72 6e 65 74 47 61 74 65 77 61 79 44 65 76 69 63 65 3a 31 0d 0a 4d 61 6e 3a 20 22 73 73 64 70 3a 64 69 73 63 6f 76 65 72 22 0d 0a 4d 58 3a 20 33 0d 0a 0d 0a
+

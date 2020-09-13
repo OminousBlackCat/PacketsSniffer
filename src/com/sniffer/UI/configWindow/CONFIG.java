@@ -10,11 +10,12 @@ import org.pcap4j.core.PcapNetworkInterface;
  */
 public class CONFIG {
     private static CONFIG instance = new CONFIG();
-    private String ipAddress = "192.168.1.102";
-    private int snapLen = 65536;
-    private int timeout = 1000;
-    private PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS;
-    private int repoNumber = 1000;
+
+    private String ipAddress = "192.168.1.102";  //适配器ip地址
+    private int snapLen = 65536;                 //报文最大长度
+    private int timeout = 1000;                  //抓取周期
+    private PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS;   //适配器工作模式
+    private int repoNumber = 1000;               //本地仓库缓存报文上限
 
 
 

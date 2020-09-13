@@ -1,5 +1,6 @@
 package com.sniffer.UI;
 
+import com.sniffer.UI.configWindow.ConfigWindow;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
@@ -15,6 +16,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+
+        Application config = new ConfigWindow();
+        Stage configStage = new Stage();
+        config.start(configStage);
+        configStage.showAndWait();
+
+
+
         URL location = getClass().getResource("main.fxml");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(location);
@@ -24,6 +33,8 @@ public class Main extends Application {
 
         primaryStage.setTitle("Packet Sniffer");
         primaryStage.setScene(new Scene(root, 1300, 800));
+        primaryStage.setMinHeight(400);
+        primaryStage.setMinWidth(900);
         primaryStage.show();
 
         controller = fxmlLoader.getController();

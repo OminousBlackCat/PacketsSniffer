@@ -37,7 +37,7 @@ public class ConfigWindow extends Application {
         controller = fxmlLoader.getController();
         controller.init();
 
-        primaryStage.show();
+        //primaryStage.show();
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {

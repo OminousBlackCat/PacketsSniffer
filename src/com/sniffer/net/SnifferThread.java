@@ -26,6 +26,7 @@ public class SnifferThread extends Thread {
     private int count = 0;
     private int fileCount = 1;
     private boolean isPause = false;
+    private boolean isStop = false;
 
     private CONFIG config;
 
@@ -51,17 +52,26 @@ public class SnifferThread extends Thread {
         timeout = config.getTimeout();
     }
 
-    public void changeFlag(){
+    public void changePauseFlag(){
         isPause = !isPause;
     }
     public boolean isPause(){
         return isPause;
     }
 
+    public void changeStopFlag(){
+        isStop = !isStop;
+    }
+
+    public boolean isStop(){
+        return isStop;
+    }
+
     @Override
     public void run(){
         try {
-            while (true){
+            repository.clearRepo();
+            while (!isStop){
                 if(!isPause){
                     PcapPacket temp = mainHandle.getNextPacket();
                     if(temp != null){

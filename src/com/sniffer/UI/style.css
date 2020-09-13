@@ -1,0 +1,7 @@
+#menuBox{
+    -fx-alignment: center-left;
+}
+#root{
+    -fx-min-width: 800;
+    -fx-min-height: 400;
+}

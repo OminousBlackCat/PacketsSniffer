@@ -5,8 +5,13 @@ import org.pcap4j.core.PcapPacket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PacketRepository {
 
+/**
+ * 前后端线程交互所用的数据结构，存放所有抓取到的报文
+ * @author wxy
+ * @version 1.0
+ * */
+public class PacketRepository {
     private static PacketRepository instance = new PacketRepository();
     private List<PcapPacket> repo;
     private int pointer;

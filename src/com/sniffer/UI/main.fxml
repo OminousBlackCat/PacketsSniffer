@@ -6,11 +6,13 @@
 <VBox fx:controller="com.sniffer.UI.Controller"
       stylesheets="@style.css"
       xmlns:fx="http://javafx.com/fxml"
-      fx:id="rootBox">
-    <HBox fx:id="menuBox">
-        <Button text="设置" fx:id="configButton"/>
-        <Button text="保存文件夹" fx:id="saveDirectoryButton"/>
-        <Label text="2020年9月11日19:52:00" fx:id="timeLabel"/>
+      fx:id="rootBox"
+      id="root">
+    <HBox fx:id="menuBox" id="menuBox">
+        <Button text="设置" fx:id="configButton" onAction="#onOpenConfig"/>
+        <Button text="保存文件夹" fx:id="saveDirectoryButton" onAction="#onDirectory"/>
+        <Label text="----------" fx:id="timeLabel"/>
+        <Label text="----------" fx:id="ipLabel"/>
         <Button text="暂停" fx:id="pauseButton" onAction="#onPause"/>
     </HBox>
 
