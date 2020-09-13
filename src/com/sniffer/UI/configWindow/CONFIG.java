@@ -10,7 +10,7 @@ import org.pcap4j.core.PcapNetworkInterface;
  */
 public class CONFIG {
     private static CONFIG instance = new CONFIG();
-    private String ipAddress = "10.203.156.33";
+    private String ipAddress = "192.168.1.102";
     private int snapLen = 65536;
     private int timeout = 1000;
     private PcapNetworkInterface.PromiscuousMode mode = PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS;

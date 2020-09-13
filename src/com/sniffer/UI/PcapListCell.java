@@ -2,14 +2,15 @@ package com.sniffer.UI;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import org.pcap4j.core.PcapPacket;
-
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Properties;
+
+
+
+
 
 public class PcapListCell extends ListCell<PcapPacket> {
 
@@ -40,9 +41,7 @@ public class PcapListCell extends ListCell<PcapPacket> {
         cellBox.getChildren().add(destinyLabel);
         cellBox.setSpacing(10);
 
-
     }
-
 
 
     @Override
@@ -99,8 +98,4 @@ public class PcapListCell extends ListCell<PcapPacket> {
         }else
             setGraphic(null);
     }
-
-
-
-
 }
