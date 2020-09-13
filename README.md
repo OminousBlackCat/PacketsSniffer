@@ -37,13 +37,20 @@
 
 本软件应用JavaFx的标准MVC模式进行构造，具体框架如下，详情可参考src/：
 
-> sniffer
+> src
 >
-> >+ net 后端线程
-> >
-> >+ UI 前端线程，包括fxml、css文件与Controller
-> >
-> >+ util 工具包 
+> > com
+> > >sniffer
+> > >>net 
+> > >>
+> > >>> snifferThread 后端主线程
+> > >
+> > >> UI 
+> > >> >fxml
+> > >> >css
+> > >> >controller
+> > >
+> > >> > util
 
 ### 开发进度
 
