@@ -7,6 +7,11 @@ import org.pcap4j.core.PcapHandle;
 import org.pcap4j.core.PcapNetworkInterface;
 import org.pcap4j.core.PcapPacket;
 import org.pcap4j.core.Pcaps;
+import org.pcap4j.packet.IpPacket;
+import org.pcap4j.packet.Packet;
+import org.pcap4j.packet.TcpPacket;
+import org.pcap4j.packet.namednumber.IpVersion;
+
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.net.InetAddress;
@@ -35,6 +40,9 @@ public class SnifferTest {
                     //System.out.println(temp.getPacket());
                     FileHelper.appendLine(FilePathHelper.PACKETSAVE_PATH + File.separator + "1.txt",temp);
                     System.out.println(FormatHelper.isIpv4Packet(temp));
+                    IpPacket ipPacket = temp.get(IpPacket.class);
+
+
 
                     Properties properties = new Properties();
                     properties.load(new ByteArrayInputStream(temp.getPacket().getPayload().getHeader().toString().getBytes()));

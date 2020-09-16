@@ -3,6 +3,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
 <VBox fx:controller="com.sniffer.UI.Controller"
       stylesheets="@style.css"
       xmlns:fx="http://javafx.com/fxml"
@@ -24,6 +25,7 @@
             </VBox>
             <VBox fx:id="informationBox">
                 <Label text="详细信息"/>
+                <TextArea text="------" fx:id="detailArea"/>
             </VBox>
         </VBox>
     </HBox>

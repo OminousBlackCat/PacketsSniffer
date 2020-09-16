@@ -5,6 +5,7 @@ import com.sniffer.UI.configWindow.ConfigWindow;
 import com.sniffer.net.PacketRepository;
 import com.sniffer.net.SnifferThread;
 import com.sniffer.util.FilePathHelper;
+import com.sniffer.util.FormatHelper;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -45,6 +47,8 @@ public class Controller {
     private VBox filterBox;
     @FXML
     private VBox informationBox;
+    @FXML
+    private TextArea detailArea;
     @FXML
     private Button configButton;
     @FXML
@@ -88,12 +92,14 @@ public class Controller {
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        detailArea.setWrapText(true);
+        detailArea.setEditable(false);
         System.out.println(mainConfig.getIpAddress());
         ipLabel.setText(mainConfig.getIpAddress());
         mainThread.start();
         timeUpdate();
         listUpdate();
+        showDetail();
 
     }
 
@@ -114,6 +120,8 @@ public class Controller {
 
         filterBox.prefHeightProperty().bind(sideBox.heightProperty().multiply(0.5));
         informationBox.prefHeightProperty().bind(sideBox.heightProperty().multiply(0.5));
+
+        detailArea.prefHeightProperty().bind(informationBox.heightProperty().subtract(10));
     }
 
     private void listUpdate(){
@@ -158,6 +166,33 @@ public class Controller {
             }
         });
         timeUpdate.start();
+    }
+
+    private void showDetail(){
+        Thread detail = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                PcapPacket origin = (PcapPacket)mainList.getSelectionModel().getSelectedItem();
+                while (true){
+                    PcapPacket temp = (PcapPacket)mainList.getSelectionModel().getSelectedItem();
+                    if(temp != origin){
+                        origin = temp;
+                        Platform.runLater(()->{
+                            if(temp != null)
+                                detailArea.setText(FormatHelper.detailInformationFormat(temp));
+                        });
+                    }
+                    try {
+                        sleep(100);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+
+        detail.start();
     }
 
     @FXML

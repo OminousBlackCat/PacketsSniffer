@@ -2,6 +2,12 @@ package com.sniffer.util;
 
 
 import org.pcap4j.core.PcapPacket;
+import org.pcap4j.packet.*;
+import org.pcap4j.packet.namednumber.EtherType;
+import org.pcap4j.packet.namednumber.IpNumber;
+import org.pcap4j.packet.namednumber.IpVersion;
+
+import java.time.ZoneId;
 
 /**
  * 使用此类来包装所有与格式检查与转换的操作
@@ -56,6 +62,69 @@ public class FormatHelper {
         if(parseVersion[0].equals("[IPv6"))
             return false;
         return true;
+    }
+
+    public static String detailInformationFormat(PcapPacket packet){
+        String build = "";
+        String split = "        ";
+        build = build +"探测时间:" + packet.getTimestamp().atZone(ZoneId.systemDefault()) +"\n";
+        build = build + "报文总长:" + packet.length() + "\n";
+        EthernetPacket ePacket = packet.getPacket().get(EthernetPacket.class);
+        build = build + "-----以太网帧(Frame)-----\n";
+        build = build + "下层协议类型:" + ePacket.getHeader().getType() + split;
+        build = build + "头部长度:" + ePacket.getHeader().length()+"\n";
+        build = build + "源MAC地址:" + ePacket.getHeader().getSrcAddr()+"\n";
+        build = build + "目的MAC地址:" + ePacket.getHeader().getDstAddr()+"\n";
+
+        if(ePacket.getHeader().getType() == EtherType.IPV4){
+            IpV4Packet i4Packet = ePacket.get(IpV4Packet.class);
+            build = build + "-----IPV4数据报(Datagram)-----\n";
+
+            build = build + "下层协议类型:" + i4Packet.getHeader().getProtocol() + "\n";
+            build = build + "源IP地址:" + i4Packet.getHeader().getSrcAddr() + "\n";
+            build = build + "目的IP地址:" + i4Packet.getHeader().getDstAddr() + "\n";
+            build = build + "TTL:" + Integer.toString(i4Packet.getHeader().getTtlAsInt()) + split;
+            build = build + "标识:" + Integer.toString(i4Packet.getHeader().getIdentificationAsInt()) + "\n";
+            if(i4Packet.getHeader().getProtocol() == IpNumber.TCP){
+                build = build + "-----TCP报文段(Segment)-----\n";
+                TcpPacket tPacket = i4Packet.get(TcpPacket.class);
+                build = build + "源端口:" + tPacket.getHeader().getSrcPort() + "\n";
+                build = build + "目的端口" + tPacket.getHeader().getDstPort() + "\n";
+                build = build + "序列号:" + Integer.toString(tPacket.getHeader().getSequenceNumber()) + "\n";
+                build = build + "确认号:" + Integer.toString(tPacket.getHeader().getAcknowledgmentNumber()) + "\n";
+                build = build + "URG:ACK:PSH:RTS:SYS:FIN = " ;
+            }
+            if(i4Packet.getHeader().getProtocol() == IpNumber.UDP){
+                build = build + "-----UDP报文段(Segment)-----\n";
+                UdpPacket uPacket = i4Packet.get(UdpPacket.class);
+                build = build + "源端口:" + uPacket.getHeader().getSrcPort() + "\n";
+                build = build + "目的端口" + uPacket.getHeader().getDstPort() + "\n";
+            }
+        }
+
+        if(ePacket.getHeader().getType() == EtherType.IPV6){
+            IpV6Packet i6Packet = ePacket.get(IpV6Packet.class);
+            build = build + "-----IPV6数据报(Datagram)-----\n";
+
+            build = build + "源地址:" + i6Packet.getHeader().getSrcAddr() + "\n";
+            build = build + "目的地址:" + i6Packet.getHeader().getDstAddr() + "\n";
+
+        }
+
+        if(ePacket.getHeader().getType() == EtherType.ARP){
+            ArpPacket aPacket = ePacket.get(ArpPacket.class);
+            build = build + "-----ARP数据报(Datagram)-----\n";
+
+
+
+
+        }
+
+
+
+
+
+        return build;
     }
 
 }
