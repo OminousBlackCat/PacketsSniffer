@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.pcap4j.core.NotOpenException;
 import org.pcap4j.core.PcapPacket;
 
 import java.awt.*;
@@ -58,6 +59,8 @@ public class Controller {
     @FXML
     private Label ipLabel;
     @FXML
+    private Label numberLabel;
+    @FXML
     private Button pauseButton;
 
 
@@ -95,10 +98,11 @@ public class Controller {
         detailArea.setWrapText(true);
         detailArea.setEditable(false);
         System.out.println(mainConfig.getIpAddress());
-        ipLabel.setText(mainConfig.getIpAddress());
+        ipLabel.setText("适配器IP地址:" + mainConfig.getIpAddress());
         mainThread.start();
         timeUpdate();
         listUpdate();
+        numberUpdate();
         showDetail();
 
     }
@@ -107,7 +111,7 @@ public class Controller {
 
         menuBox.prefWidthProperty().bind(rootBox.widthProperty());
         menuBox.setPrefHeight(40);
-        menuBox.spacingProperty().bind(rootBox.widthProperty().multiply(0.1));
+        menuBox.spacingProperty().bind(rootBox.widthProperty().multiply(0.05));
 
         mainBox.prefWidthProperty().bind(rootBox.widthProperty());
         mainBox.prefHeightProperty().bind(rootBox.heightProperty().subtract(40));
@@ -118,8 +122,8 @@ public class Controller {
         sideBox.prefWidthProperty().bind(mainBox.widthProperty().multiply(0.3));
         sideBox.prefHeightProperty().bind(mainBox.heightProperty());
 
-        filterBox.prefHeightProperty().bind(sideBox.heightProperty().multiply(0.5));
-        informationBox.prefHeightProperty().bind(sideBox.heightProperty().multiply(0.5));
+        filterBox.prefHeightProperty().bind(sideBox.heightProperty().multiply(0.3));
+        informationBox.prefHeightProperty().bind(sideBox.heightProperty().multiply(0.7));
 
         detailArea.prefHeightProperty().bind(informationBox.heightProperty().subtract(10));
     }
@@ -160,12 +164,36 @@ public class Controller {
                         e.printStackTrace();
                     }
                     Platform.runLater(()->{
-                        timeLabel.setText(new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date()));
+                        timeLabel.setText("系统时间:" + new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date()));
                     });
                 }
             }
         });
         timeUpdate.start();
+    }
+    private void numberUpdate(){
+        Thread numberUpdate = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        sleep(100);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(()->{
+                        try {
+                            numberLabel.setText("当前探测报文总数:" + Long.toString(mainThread.mainHandle.getStats().getNumPacketsCaptured()));
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                    });
+                }
+            }
+        });
+        numberUpdate.start();
+
     }
 
     private void showDetail(){
@@ -237,7 +265,7 @@ public class Controller {
             isListUpdate = true;
             listUpdate();
             pauseButton.setText("暂停");
-            ipLabel.setText(mainConfig.getIpAddress());
+            ipLabel.setText("适配器IP地址:" +mainConfig.getIpAddress());
         }catch (Exception e){
             e.printStackTrace();
         }

@@ -2,14 +2,16 @@ package com.sniffer.UI;
 
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import org.pcap4j.core.PcapPacket;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.util.Properties;
+import org.pcap4j.packet.*;
+import org.pcap4j.packet.namednumber.EtherType;
+import org.pcap4j.packet.namednumber.IpNumber;
+import org.pcap4j.packet.namednumber.TcpPort;
 
-
-
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 
 public class PcapListCell extends ListCell<PcapPacket> {
@@ -19,8 +21,13 @@ public class PcapListCell extends ListCell<PcapPacket> {
     private Label ipClassImg;
     private Label transClassImg;
     private Label payloadLabel;
-    private Label sourceLabel;
-    private Label destinyLabel;
+    private Label sourceMacLabel;
+    private Label destinyMacLabel;
+    private Label sourceIpLabel;
+    private Label destinyIpLabel;
+    private Label appClassImg;
+    private Label sourcePortLabel;
+    private Label destinyPortLabel;
 
     public PcapListCell(){
         super();
@@ -29,16 +36,28 @@ public class PcapListCell extends ListCell<PcapPacket> {
         timeLabel = new Label();
         ipClassImg = new Label();///
         transClassImg = new Label();///
+        appClassImg = new Label();
         payloadLabel = new Label();
-        sourceLabel = new Label();
-        destinyLabel = new Label();
+        sourceMacLabel = new Label();
+        destinyMacLabel = new Label();
+        sourceIpLabel = new Label();
+        destinyIpLabel = new Label();
+        sourcePortLabel = new Label();
+        destinyPortLabel = new Label();
+
+
 
         cellBox.getChildren().add(timeLabel);
         cellBox.getChildren().add(ipClassImg);
         cellBox.getChildren().add(transClassImg);
+        cellBox.getChildren().add(appClassImg);
         cellBox.getChildren().add(payloadLabel);
-        cellBox.getChildren().add(sourceLabel);
-        cellBox.getChildren().add(destinyLabel);
+        cellBox.getChildren().add(sourceMacLabel);
+        cellBox.getChildren().add(destinyMacLabel);
+        cellBox.getChildren().add(sourceIpLabel);
+        cellBox.getChildren().add(destinyIpLabel);
+        cellBox.getChildren().add(sourcePortLabel);
+        cellBox.getChildren().add(destinyPortLabel);
         cellBox.setSpacing(10);
 
     }
@@ -48,49 +67,95 @@ public class PcapListCell extends ListCell<PcapPacket> {
     protected void updateItem(PcapPacket item,boolean empty){
         super.updateItem(item,empty);
 
-        Properties etherProperties = new Properties();
-        Properties ipProperties = new Properties();
-        boolean isIpv4 = false;
-
-
-
         if(item != null && !empty){
-            try{
-                etherProperties.load(new ByteArrayInputStream(item.getPacket().getHeader().toString().getBytes()));
-                ipProperties.load(new ByteArrayInputStream(item.getPacket().getPayload().getHeader().toString().getBytes()));
-            }catch (IOException ioe){
-                ioe.printStackTrace();
-            }
+
+            EthernetPacket ePacket = item.get(EthernetPacket.class);
 
             try{
-                timeLabel.setText(item.getTimestamp().toString());
+                timeLabel.setText(item.getTimestamp().atZone(ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm:ss:SSS")));
+                sourceMacLabel.setText("");
+                destinyMacLabel.setText("");
+                sourcePortLabel.setText("");
+                destinyPortLabel.setText("");
 
-                switch (etherProperties.getProperty("Type")){  ////此处应该封装为一个函数在FormatHelper里
-                    case "0x0806 (ARP)":
-                        ipClassImg.setText("ARP");
-                        isIpv4 = false;
-                        break;
-                    case "0x86dd (IPv6)":
-                        ipClassImg.setText("IPv6");
-                        isIpv4 = false;
-                        break;
-                    case "0x0800 (IPv4)":
-                        ipClassImg.setText("IPv4");
-                        isIpv4 = true;
-                        break;
+
+
+                if(ePacket.getHeader().getType() == EtherType.IPV4){
+                    ipClassImg.setText("IPV4");
+                    IpV4Packet temp = ePacket.get(IpV4Packet.class);
+                    sourceIpLabel.setText(temp.getHeader().getSrcAddr().toString());
+                    destinyIpLabel.setText(temp.getHeader().getDstAddr().toString());
+
+                    if(temp.getHeader().getProtocol() == IpNumber.TCP){
+                        TcpPacket tcpPacket = temp.get(TcpPacket.class);
+                        sourcePortLabel.setText(tcpPacket.getHeader().getSrcPort().toString());
+                        destinyPortLabel.setText(tcpPacket.getHeader().getDstPort().toString());
+                        if(tcpPacket.getHeader().getDstPort() == TcpPort.HTTPS ||
+                                tcpPacket.getHeader().getSrcPort() == TcpPort.HTTPS ||
+                                tcpPacket.getHeader().getDstPort() == TcpPort.HTTP ||
+                                tcpPacket.getHeader().getSrcPort() == TcpPort.HTTP){
+                            cellBox.setStyle("-fx-background-color: #f5ff9b");
+                            appClassImg.setText("HTTP(S)");
+                        }else {
+                            cellBox.setStyle("-fx-background-color: #d1b0ff");
+                            appClassImg.setText("----");
+                        }
+                    }
+                    else{
+                        if(temp.getHeader().getProtocol() == IpNumber.UDP){
+                            UdpPacket udpPacket = temp.get(UdpPacket.class);
+                            sourcePortLabel.setText(udpPacket.getHeader().getSrcPort().toString());
+                            destinyPortLabel.setText(udpPacket.getHeader().getDstPort().toString());
+                            if(temp.get(DnsPacket.class) != null){
+                                cellBox.setStyle("-fx-background-color: #ffa762");
+                                appClassImg.setText("DNS");
+                            }else {
+                                cellBox.setStyle("-fx-background-color: #ff94dd");
+                                appClassImg.setText("---");
+                            }
+                        } else
+                            cellBox.setStyle("-fx-background-color: #ff8080");
+                    }
                 }
 
-                if(isIpv4){
-                    if(ipProperties.getProperty("Protocol").equals("17 (UDP)")){
-                        transClassImg.setText("UDP"); ///
-                    }else
-                        transClassImg.setText("TCP");
-                }else {
-                    transClassImg.setText("---");
+                if(ePacket.getHeader().getType() == EtherType.IPV6){
+                    appClassImg.setText("");
+
+                    ipClassImg.setText("IPV6");
+                    IpV6Packet temp = ePacket.get(IpV6Packet.class);
+                    sourceIpLabel.setText(temp.getHeader().getSrcAddr().toString());
+                    destinyIpLabel.setText(temp.getHeader().getDstAddr().toString());
+
+                    if(temp.get(DnsPacket.class) != null){
+                        cellBox.setStyle("-fx-background-color: #ffa762");
+                        appClassImg.setText("DNS(IPV6)");
+                    }else {
+                        cellBox.setStyle("-fx-background-color: #adff81");
+                    }
+
                 }
 
-                sourceLabel.setText(ipProperties.getProperty("Source"));
-                destinyLabel.setText(ipProperties.getProperty("Destination"));
+                if(ePacket.getHeader().getType() == EtherType.ARP){
+                    appClassImg.setText("");
+
+                    ipClassImg.setText("ARP");
+                    ArpPacket temp = ePacket.get(ArpPacket.class);
+                    cellBox.setStyle("-fx-background-color: #bfbfbf");
+                    sourceIpLabel.setText(temp.getHeader().getSrcProtocolAddr().toString());
+                    destinyIpLabel.setText(temp.getHeader().getDstProtocolAddr().toString());
+
+                    sourceMacLabel.setText(ePacket.getHeader().getSrcAddr().toString());
+                    destinyMacLabel.setText(ePacket.getHeader().getDstAddr().toString());
+                }
+
+
+                transClassImg.setText("---");
+                if(ePacket.get(TcpPacket.class) != null)
+                    transClassImg.setText("TCP");
+                if(ePacket.get(UdpPacket.class) != null)
+                    transClassImg.setText("UDP");
+
+
             }catch (Exception e){
                 e.printStackTrace();
             }

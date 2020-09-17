@@ -18,7 +18,7 @@ public class SnifferThread extends Thread {
 
     private InetAddress ip;
     private PcapNetworkInterface sniffer;
-    private PcapHandle mainHandle;
+    public PcapHandle mainHandle;
     private PcapNetworkInterface.PromiscuousMode mode;
     private PacketRepository repository;
     private int snapLen = 65536;
