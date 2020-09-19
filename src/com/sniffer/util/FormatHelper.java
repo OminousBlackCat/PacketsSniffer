@@ -5,8 +5,6 @@ import org.pcap4j.core.PcapPacket;
 import org.pcap4j.packet.*;
 import org.pcap4j.packet.namednumber.EtherType;
 import org.pcap4j.packet.namednumber.IpNumber;
-import org.pcap4j.packet.namednumber.IpVersion;
-
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -16,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * 使用此类来包装所有与格式检查与转换的操作
  * @author wxy
- * @version 1.0
+ * @version 1.6
  */
 public class FormatHelper {
 

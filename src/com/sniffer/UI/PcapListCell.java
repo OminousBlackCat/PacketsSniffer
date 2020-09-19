@@ -13,7 +13,11 @@ import org.pcap4j.packet.namednumber.TcpPort;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * 对表格单元类的派生，自定义了表格单元并以此来显示不同类型的报文，主要逻辑在方法updateItem内
+ * @author wxy
+ * @version 1.6
+ */
 public class PcapListCell extends ListCell<PcapPacket> {
 
     private HBox cellBox;

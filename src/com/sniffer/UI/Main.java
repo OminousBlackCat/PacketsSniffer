@@ -7,9 +7,14 @@ import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.net.URL;
 
+
+/**
+ * 主窗口类，继承Application，通过fmxl构造窗口，实例化controller
+ * @author wxy
+ * @version 1.0
+ */
 public class Main extends Application {
 
     private Controller controller;

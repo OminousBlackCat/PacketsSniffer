@@ -33,6 +33,12 @@ import java.util.Date;
 
 import static java.lang.Thread.sleep;
 
+
+/**
+ * 主窗口的Controller类，整个软件最核心的控制类，软件前后端数据交互主要在此进行
+ * @author wxy
+ * @version 1.8
+ */
 public class Controller {
 
     @FXML

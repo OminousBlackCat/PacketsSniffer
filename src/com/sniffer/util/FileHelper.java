@@ -8,8 +8,6 @@ import java.io.*;
  * @author wxy
  * @version 1.0
  */
-
-
 public class FileHelper {
 
     /**

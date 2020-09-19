@@ -4,11 +4,13 @@ import org.pcap4j.core.PcapPacket;
 import org.pcap4j.packet.*;
 import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.TcpPort;
-
-import java.net.Inet4Address;
-import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * 使用此类搜索过滤相关操作
+ * @author wxy
+ * @version 1.1
+ */
 public class SearchHelper {
 
     public static String etherProtocol;
