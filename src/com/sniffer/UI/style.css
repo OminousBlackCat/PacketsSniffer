@@ -5,3 +5,24 @@
     -fx-min-width: 800;
     -fx-min-height: 400;
 }
+.filterLabel{
+    -fx-pref-width: 120;
+}
+
+.filterCombo{
+    -fx-pref-width: 120;
+}
+
+.filterText{
+    -fx-pref-width: 150;
+}
+
+#filterButtonBox{
+    -fx-alignment: center;
+    -fx-spacing: 20;
+}
+
+#filterBox{
+    -fx-spacing: 5;
+    -fx-padding: 5;
+}

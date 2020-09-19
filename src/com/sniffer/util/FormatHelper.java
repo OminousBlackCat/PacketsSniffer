@@ -7,6 +7,9 @@ import org.pcap4j.packet.namednumber.EtherType;
 import org.pcap4j.packet.namednumber.IpNumber;
 import org.pcap4j.packet.namednumber.IpVersion;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
@@ -52,7 +55,7 @@ public class FormatHelper {
         }catch (Exception e){
             return false;
         }
-        return (check>=10&&check<=10000);
+        return (check>=0&&check<=10000);
     }
 
     public static boolean isIpv4Packet(PcapPacket packet){
@@ -64,6 +67,35 @@ public class FormatHelper {
             return false;
         return true;
     }
+
+    public static boolean checkIpAddress(String ip){
+        boolean isIPv4 = true;
+        if(ip.equals("")){
+            return true;
+        }
+
+        try {
+            final InetAddress inet = Inet4Address.getByName(ip);
+        } catch (final UnknownHostException e) {
+            isIPv4 = false;
+        }
+        return isIPv4;
+    }
+
+    public static boolean checkPort(String port){
+        boolean isPort = true;
+        if(port.equals(""))
+            return true;
+        try {
+            int temp =Integer.parseInt(port);
+            if(temp<0 || temp>65535)
+                isPort = false;
+        }catch (Exception e){
+            isPort = false;
+        }
+        return isPort;
+    }
+
 
     public static String detailInformationFormat(PcapPacket packet){
         String build = "";
@@ -81,7 +113,7 @@ public class FormatHelper {
             IpV4Packet i4Packet = ePacket.get(IpV4Packet.class);
             build = build + "-----IPV4数据报(Datagram)-----\n";
 
-            build = build + "下层协议类型:" + i4Packet.getHeader().getProtocol() + "\n";
+            build = build + "下层协议类型:" + i4Packet.getHeader().getProtocol().name() + "\n";
             build = build + "源IP地址:" + i4Packet.getHeader().getSrcAddr() + "\n";
             build = build + "目的IP地址:" + i4Packet.getHeader().getDstAddr() + "\n";
             build = build + "TTL:" + Integer.toString(i4Packet.getHeader().getTtlAsInt()) + split;
@@ -97,17 +129,21 @@ public class FormatHelper {
                         tPacket.getHeader().getPsh(),tPacket.getHeader().getRst(),tPacket.getHeader().getSyn(),
                         tPacket.getHeader().getFin()) + "\n";
                 build = build + "应用层负载:" + tPacket.getPayload()+ "\n";
-            }
-            if(i4Packet.getHeader().getProtocol() == IpNumber.UDP){
+            } else if(i4Packet.getHeader().getProtocol() == IpNumber.UDP){
                 build = build + "-----UDP报文段(Segment)-----\n";
                 UdpPacket uPacket = i4Packet.get(UdpPacket.class);
                 build = build + "源端口:" + uPacket.getHeader().getSrcPort() + "\n";
                 build = build + "目的端口:" + uPacket.getHeader().getDstPort() + "\n";
                 build = build + "应用层负载:" + uPacket.getPayload()+ "\n";
-            }
-            if(i4Packet.getHeader().getProtocol() == IpNumber.IGMP){
+            } else if(i4Packet.getHeader().getProtocol() == IpNumber.IGMP){
                 build = build + "-----IGMP报文段(Segment)-----\n";
                 build = build + "IGMP配置:" + i4Packet.getHeader().getOptions() + "\n";
+                build = build + "报文负载:" + i4Packet.getPayload() + "\n";
+            } else if(i4Packet.getHeader().getProtocol() == IpNumber.ICMPV4){
+                build = build + "-----ICMPv4报文段(Segment)-----\n";
+                build = build + "报文负载:" + i4Packet.getPayload() + "\n";
+            } else{
+                build = build + "-----其他报文段(Segment)-----\n";
                 build = build + "报文负载:" + i4Packet.getPayload() + "\n";
             }
         }
@@ -118,6 +154,7 @@ public class FormatHelper {
 
             build = build + "源地址:" + i6Packet.getHeader().getSrcAddr() + "\n";
             build = build + "目的地址:" + i6Packet.getHeader().getDstAddr() + "\n";
+            build = build + "底层协议:" + i6Packet.getHeader().getProtocol().name() + "\n";
             build = build + "报文负载:" + i6Packet.getPayload() + "\n";
 
         }
@@ -132,10 +169,6 @@ public class FormatHelper {
             build = build + "目的硬件MAC地址:" + aPacket.getHeader().getDstHardwareAddr()+ "\n";
             build = build + "目的协议地址:" + aPacket.getHeader().getDstProtocolAddr()+ "\n";
         }
-
-
-
-
 
         return build;
     }
@@ -173,7 +206,7 @@ public class FormatHelper {
             build = build + "0";
         }
         return build;
-
     }
+
 
 }

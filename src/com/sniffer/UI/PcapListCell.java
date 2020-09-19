@@ -45,6 +45,9 @@ public class PcapListCell extends ListCell<PcapPacket> {
         sourcePortLabel = new Label();
         destinyPortLabel = new Label();
 
+        ipClassImg.setPrefWidth(40);
+        transClassImg.setPrefWidth(70);
+        appClassImg.setPrefWidth(60);
 
 
         cellBox.getChildren().add(timeLabel);
@@ -83,13 +86,17 @@ public class PcapListCell extends ListCell<PcapPacket> {
                 if(ePacket.getHeader().getType() == EtherType.IPV4){
                     ipClassImg.setText("IPV4");
                     IpV4Packet temp = ePacket.get(IpV4Packet.class);
-                    sourceIpLabel.setText(temp.getHeader().getSrcAddr().toString());
-                    destinyIpLabel.setText(temp.getHeader().getDstAddr().toString());
+                    appClassImg.setText("----");
+                    sourceIpLabel.setPrefWidth(140);
+                    destinyIpLabel.setPrefWidth(140);
+                    sourceIpLabel.setText("F:" + temp.getHeader().getSrcAddr().getHostAddress());
+                    destinyIpLabel.setText("T:" + temp.getHeader().getDstAddr().getHostAddress());
 
                     if(temp.getHeader().getProtocol() == IpNumber.TCP){
                         TcpPacket tcpPacket = temp.get(TcpPacket.class);
-                        sourcePortLabel.setText(tcpPacket.getHeader().getSrcPort().toString());
-                        destinyPortLabel.setText(tcpPacket.getHeader().getDstPort().toString());
+                        transClassImg.setText("TCP");
+                        sourcePortLabel.setText("F:" + tcpPacket.getHeader().getSrcPort().toString());
+                        destinyPortLabel.setText("T:" + tcpPacket.getHeader().getDstPort().toString());
                         if(tcpPacket.getHeader().getDstPort() == TcpPort.HTTPS ||
                                 tcpPacket.getHeader().getSrcPort() == TcpPort.HTTPS ||
                                 tcpPacket.getHeader().getDstPort() == TcpPort.HTTP ||
@@ -97,64 +104,84 @@ public class PcapListCell extends ListCell<PcapPacket> {
                             cellBox.setStyle("-fx-background-color: #f5ff9b");
                             appClassImg.setText("HTTP(S)");
                         }else {
-                            cellBox.setStyle("-fx-background-color: #d1b0ff");
+                            cellBox.setStyle("-fx-background-color: #a6ff7f");
                             appClassImg.setText("----");
                         }
-                    }
-                    else{
-                        if(temp.getHeader().getProtocol() == IpNumber.UDP){
-                            UdpPacket udpPacket = temp.get(UdpPacket.class);
-                            sourcePortLabel.setText(udpPacket.getHeader().getSrcPort().toString());
-                            destinyPortLabel.setText(udpPacket.getHeader().getDstPort().toString());
-                            if(temp.get(DnsPacket.class) != null){
-                                cellBox.setStyle("-fx-background-color: #ffa762");
-                                appClassImg.setText("DNS");
-                            }else {
-                                cellBox.setStyle("-fx-background-color: #ff94dd");
-                                appClassImg.setText("---");
-                            }
-                        } else
-                            cellBox.setStyle("-fx-background-color: #ff8080");
+                    } else if(temp.getHeader().getProtocol() == IpNumber.UDP){
+                        UdpPacket udpPacket = temp.get(UdpPacket.class);
+                        transClassImg.setText("UDP");
+                        sourcePortLabel.setText("F:" + udpPacket.getHeader().getSrcPort().toString());
+                        destinyPortLabel.setText("T:" + udpPacket.getHeader().getDstPort().toString());
+                        if(temp.get(DnsPacket.class) != null){
+                            cellBox.setStyle("-fx-background-color: #ffac66");
+                            appClassImg.setText("DNS");
+                        }else if(udpPacket.getHeader().getSrcPort().value() == 8000 ||
+                                udpPacket.getHeader().getDstPort().value() == 8000 ||
+                                udpPacket.getHeader().getSrcPort().value() == 8001 ||
+                                udpPacket.getHeader().getDstPort().value() == 8001){
+                            cellBox.setStyle("-fx-background-color: #ff7193");
+                            appClassImg.setText("OICQ");
+                        }else {
+                            cellBox.setStyle("-fx-background-color: #ff94dd");
+                        }
+                    } else if(temp.getHeader().getProtocol() == IpNumber.IGMP){
+                        transClassImg.setText("IGMP");
+                        cellBox.setStyle("-fx-background-color: #ff2b2a");
+                    } else if(temp.getHeader().getProtocol() == IpNumber.ICMPV4){
+                        transClassImg.setText("ICMPv4");
+                        cellBox.setStyle("-fx-background-color: #e4abff");
+                    } else{
+                        transClassImg.setText(temp.getHeader().getProtocol().toString());
+                        cellBox.setStyle("-fx-background-color: #ff2b2a");
                     }
                 }
-
-                if(ePacket.getHeader().getType() == EtherType.IPV6){
-                    appClassImg.setText("");
-
+                else if(ePacket.getHeader().getType() == EtherType.IPV6){
+                    appClassImg.setText("---");
                     ipClassImg.setText("IPV6");
+                    sourceIpLabel.setPrefWidth(250);
+                    destinyIpLabel.setPrefWidth(250);
                     IpV6Packet temp = ePacket.get(IpV6Packet.class);
-                    sourceIpLabel.setText(temp.getHeader().getSrcAddr().toString());
-                    destinyIpLabel.setText(temp.getHeader().getDstAddr().toString());
+                    sourceIpLabel.setText("F:" + temp.getHeader().getSrcAddr().getHostAddress());
+                    destinyIpLabel.setText("T:" + temp.getHeader().getDstAddr().getHostAddress());
+
+                    if(temp.getHeader().getProtocol() == IpNumber.ICMPV6){
+                        transClassImg.setText("ICMPv6");
+                        cellBox.setStyle("-fx-background-color: #c97cff");
+                    }else if(temp.getHeader().getProtocol() == IpNumber.IPV6_HOPOPT){
+                        cellBox.setStyle("-fx-background-color: #736fff");
+                        transClassImg.setText("HOPOPT");
+                    }else if(temp.getHeader().getProtocol() == IpNumber.UDP){
+                        cellBox.setStyle("-fx-background-color: #cb66a7");
+                        transClassImg.setText("UDP");
+                    }else if (temp.getHeader().getProtocol() == IpNumber.TCP){
+                        cellBox.setStyle("-fx-background-color: #8bd66e");
+                        transClassImg.setText("TCP");
+                    }else {
+                        transClassImg.setText(temp.getHeader().getProtocol().toString());
+                        cellBox.setStyle("-fx-background-color: #ff2b2a");
+                    }
 
                     if(temp.get(DnsPacket.class) != null){
-                        cellBox.setStyle("-fx-background-color: #ffa762");
+                        cellBox.setStyle("-fx-background-color: #e39065");
                         appClassImg.setText("DNS(IPV6)");
-                    }else {
-                        cellBox.setStyle("-fx-background-color: #adff81");
                     }
 
                 }
 
-                if(ePacket.getHeader().getType() == EtherType.ARP){
-                    appClassImg.setText("");
-
+                else if(ePacket.getHeader().getType() == EtherType.ARP){
+                    appClassImg.setText("---");
                     ipClassImg.setText("ARP");
+                    transClassImg.setText("---");
+                    sourceIpLabel.setPrefWidth(140);
+                    destinyIpLabel.setPrefWidth(140);
                     ArpPacket temp = ePacket.get(ArpPacket.class);
                     cellBox.setStyle("-fx-background-color: #bfbfbf");
-                    sourceIpLabel.setText(temp.getHeader().getSrcProtocolAddr().toString());
-                    destinyIpLabel.setText(temp.getHeader().getDstProtocolAddr().toString());
+                    sourceIpLabel.setText( temp.getHeader().getSrcProtocolAddr().getHostAddress());
+                    destinyIpLabel.setText(temp.getHeader().getDstProtocolAddr().getHostAddress());
 
                     sourceMacLabel.setText(ePacket.getHeader().getSrcAddr().toString());
                     destinyMacLabel.setText(ePacket.getHeader().getDstAddr().toString());
                 }
-
-
-                transClassImg.setText("---");
-                if(ePacket.get(TcpPacket.class) != null)
-                    transClassImg.setText("TCP");
-                if(ePacket.get(UdpPacket.class) != null)
-                    transClassImg.setText("UDP");
-
 
             }catch (Exception e){
                 e.printStackTrace();

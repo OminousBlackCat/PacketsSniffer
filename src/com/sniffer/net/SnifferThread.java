@@ -82,7 +82,7 @@ public class SnifferThread extends Thread {
                             repository.clearRepo();
                         }
                         repository.addItem(temp);
-                        FileHelper.appendLine(FilePathHelper.PACKETSAVE_PATH + File.separator +Integer.toString(fileCount)+ ".txt",temp);
+                        //FileHelper.appendLine(FilePathHelper.PACKETSAVE_PATH + File.separator +Integer.toString(fileCount)+ ".txt",temp);
                     }
                 }else {
                     PcapPacket temp = mainHandle.getNextPacket();

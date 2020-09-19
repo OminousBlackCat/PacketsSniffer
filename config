@@ -1,4 +1,4 @@
 nicWorkMode:PROMISCUOUS
 nicIpAddress:0.0.0.0
 SnapLength:65536
-SnapTimeout:20
+SnapTimeout:10

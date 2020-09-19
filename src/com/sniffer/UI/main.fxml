@@ -4,6 +4,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
 <VBox fx:controller="com.sniffer.UI.Controller"
       stylesheets="@style.css"
       xmlns:fx="http://javafx.com/fxml"
@@ -15,14 +17,49 @@
         <Label text="----------" fx:id="timeLabel"/>
         <Label text="----------" fx:id="ipLabel"/>
         <Label text="当前已探测报文数:" fx:id="numberLabel"/>
+        <Label text="已显示:" fx:id="showNumberLabel"/>
         <Button text="暂停" fx:id="pauseButton" onAction="#onPause"/>
     </HBox>
 
     <HBox fx:id="mainBox">
         <ListView fx:id="mainList"/>
         <VBox fx:id="sideBox">
-            <VBox fx:id="filterBox">
+            <VBox fx:id="filterBox" id="filterBox">
                 <Label text="过滤器"/>
+                <HBox>
+                    <Label text="以太网帧协议类型:" styleClass="filterLabel"/>
+                    <ComboBox fx:id="filter_EtherProtocol" styleClass="filterCombo"/>
+                </HBox>
+                <HBox>
+                    <Label text="底层协议类型:" styleClass="filterLabel"/>
+                    <ComboBox fx:id="filter_DownProtocol"  styleClass="filterCombo"/>
+                </HBox>
+                <HBox>
+                    <Label text="源IPv4地址:" styleClass="filterLabel" />
+                    <TextField fx:id="filter_srcIp" styleClass="filterText"/>
+                </HBox>
+                <HBox>
+                    <Label text="目的IPv4地址:" styleClass="filterLabel"/>
+                    <TextField fx:id="filter_dstIp" styleClass="filterText"/>
+                </HBox>
+                <HBox>
+                    <Label text="源/目的IPv4地址:" styleClass="filterLabel"/>
+                    <TextField fx:id="filter_allIp" styleClass="filterText"/>
+                </HBox>
+                <HBox>
+                    <Label text="源端口号:" styleClass="filterLabel"/>
+                    <TextField fx:id="filter_srcPort" styleClass="filterText"/>
+                </HBox>
+                <HBox>
+                    <Label text="目的端口号:" styleClass="filterLabel"/>
+                    <TextField fx:id="filter_dstPort" styleClass="filterText"/>
+                </HBox>
+                <HBox id="filterButtonBox">
+                    <Button text="确定" onAction="#filter_confirm"/>
+                    <Button text="返回" onAction="#filter_cancel"/>
+                </HBox>
+
+
             </VBox>
             <VBox fx:id="informationBox">
                 <Label text="详细信息"/>

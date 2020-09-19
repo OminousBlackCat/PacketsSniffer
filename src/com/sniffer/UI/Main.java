@@ -32,7 +32,7 @@ public class Main extends Application {
 
 
         primaryStage.setTitle("Packet Sniffer");
-        primaryStage.setScene(new Scene(root, 1300, 800));
+        primaryStage.setScene(new Scene(root, 1600, 800));
         primaryStage.setMinHeight(400);
         primaryStage.setMinWidth(900);
         primaryStage.show();
