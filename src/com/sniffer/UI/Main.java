@@ -6,7 +6,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.io.File;
 import java.net.URL;
 
 
@@ -40,6 +43,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 1600, 800));
         primaryStage.setMinHeight(400);
         primaryStage.setMinWidth(900);
+        primaryStage.getIcons().add(new Image("file:" + System.getProperty("user.dir") + File.separator + "icon.png"));
         primaryStage.show();
 
         controller = fxmlLoader.getController();

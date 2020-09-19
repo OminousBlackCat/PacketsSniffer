@@ -6,8 +6,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.JavaFXBuilderFactory;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+
+import java.io.File;
 import java.net.URL;
 
 
@@ -33,6 +36,7 @@ public class ConfigWindow extends Application {
         primaryStage.setTitle("参数配置窗口");
         Scene scene = new Scene(root, 720, 310);
         primaryStage.setScene(scene);
+        primaryStage.getIcons().add(new Image("file:" + System.getProperty("user.dir") + File.separator + "icon.png"));
 
         controller = fxmlLoader.getController();
         controller.init();
