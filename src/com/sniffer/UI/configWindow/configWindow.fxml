@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            stylesheets="@configWindow.css"
+            fx:controller="com.sniffer.UI.configWindow.ConfigWindowController"
+            prefHeight="400.0" prefWidth="600.0"
+            fx:id="rootBox">
+    <HBox id="titleBox">
+        <Label text="探测参数设定" />
+    </HBox>
+    <HBox id="configFileBox">
+        <Label text="浏览配置文件"/>
+        <TextField fx:id="configFilePath" prefWidth="400"/>
+        <Button fx:id="configFileChoose" text="浏览" onAction="#onFileChoose"/>
+    </HBox>
+    <HBox id="parm1Box">
+        <Label text="适配器工作模式" />
+        <ComboBox fx:id="nicWorkMode" styleClass="combo"/>
+    </HBox>
+    <HBox id="parm2Box">
+        <Label text="适配器IP地址"/>
+        <ComboBox fx:id="nicIpAddress" styleClass="combo"/>
+    </HBox>
+    <HBox >
+        <Label text="探测报文最大长度(B)"/>
+        <TextField fx:id="snapLength" styleClass="other"/>
+    </HBox>
+    <HBox>
+        <Label text="探测周期(ms)"/>
+        <TextField fx:id="snapTimeout" styleClass="other"/>
+    </HBox>
+
+    <HBox id="ButtonBox">
+    <Button text="确定" fx:id="confirmButton" onAction="#onConfirm"/>
+    <Button text="取消" fx:id="cancelButton" onAction="#onCancel"/>
+    </HBox>
+
+</VBox>
