@@ -34,7 +34,7 @@ public class DialogHelper {
         alert.showAndWait();
     }
 
-    public static void popInfomationDialog(String header, String context) {
+    public static void popInformationDialog(String header, String context) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("提示");
         alert.setHeaderText(header);

@@ -32,7 +32,6 @@ public class Main extends Application {
         Application config = new ConfigWindow();
         Stage configStage = new Stage();
         config.start(configStage);
-        configStage.get
         configStage.showAndWait();
 
 
