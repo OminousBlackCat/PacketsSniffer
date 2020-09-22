@@ -103,16 +103,15 @@ public class Controller {
     }
 
     public void init(){
-        Application test = new ConfigWindow();
-        Stage testStage = new Stage();
-        try {
-            test.start(testStage);
-            System.out.printf("LOADING*******************************************************************");
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        testStage.show();
-
+//        Application test = new ConfigWindow();
+//        Stage testStage = new Stage();
+//        try {
+//            test.start(testStage);
+//            System.out.printf("LOADING*******************************************************************");
+//        }catch (Exception e){
+//            e.printStackTrace();
+//        }
+//        testStage.show();
 
         bindSize();
         mainList.setCellFactory(new Callback<ListView<PcapPacket>, ListCell<PcapPacket>>() {
@@ -145,10 +144,6 @@ public class Controller {
         filter_EtherProtocol.getSelectionModel().selectFirst();
         filter_DownProtocol.getSelectionModel().selectFirst();
 
-
-        System.out.printf("SUCCESS***************************************************************");
-        testStage.close();
-
     }
 
     private void bindSize(){
@@ -173,6 +168,7 @@ public class Controller {
         filter_dstIp.prefWidthProperty().bind(filterBox.widthProperty().multiply(0.6));
         filter_srcIp.prefWidthProperty().bind(filterBox.widthProperty().multiply(0.6));
         filter_allIp.prefWidthProperty().bind(filterBox.widthProperty().multiply(0.6));
+
         filter_dstPort.prefWidthProperty().bind(filterBox.widthProperty().multiply(0.4));
         filter_srcPort.prefWidthProperty().bind(filterBox.widthProperty().multiply(0.4));
 
@@ -255,6 +251,7 @@ public class Controller {
             }
         });
         numberUpdate.start();
+
     }
 
     private void showDetail(){

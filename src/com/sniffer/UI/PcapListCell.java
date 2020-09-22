@@ -168,6 +168,7 @@ public class PcapListCell extends ListCell<PcapPacket> {
                             cellBox.setStyle("-fx-background-color: #d0d883");
                             appClassImg.setText("HTTP(S)");
                         }
+
                     }else {
                         transClassImg.setText(temp.getHeader().getProtocol().toString());
                         cellBox.setStyle("-fx-background-color: #ff2b2a");

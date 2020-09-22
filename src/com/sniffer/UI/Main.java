@@ -32,9 +32,8 @@ public class Main extends Application {
         Application config = new ConfigWindow();
         Stage configStage = new Stage();
         config.start(configStage);
+        configStage.get
         configStage.showAndWait();
-
-
 
 
         URL location = getClass().getResource("main.fxml");
@@ -50,10 +49,6 @@ public class Main extends Application {
         primaryStage.setMinWidth(900);
         primaryStage.getIcons().add(new Image("file:" + System.getProperty("user.dir") + File.separator + "icon.png"));
         primaryStage.show();
-
-
-
-
 
         controller = fxmlLoader.getController();
         controller.init();
@@ -71,27 +66,6 @@ public class Main extends Application {
                 event.consume();
             }
         });
-    }
-    private void thread(){
-        Thread test = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run() {
-                        Application test = new ConfigWindow();
-                        Stage testStage = new Stage();
-                        try {
-                            test.start(testStage);
-                            testStage.show();
-                        }catch (Exception e ){
-                            e.printStackTrace();
-                        }
-                    }
-                });
-            }
-        });
-        test.start();
     }
 
 

@@ -27,7 +27,6 @@ import java.util.Properties;
  */
 public class ConfigWindowController  {
 
-
     @FXML
     private VBox rootBox;
     @FXML
@@ -130,6 +129,7 @@ public class ConfigWindowController  {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Choose File");
         fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+
         configFile = fileChooser.showOpenDialog(rootBox.getScene().getWindow());
         if (configFile!= null) {
             try {
@@ -180,6 +180,4 @@ public class ConfigWindowController  {
         if(DialogHelper.popConfirmationDialog("确认？","是否退出程序？"))
             System.exit(0);
     }
-
-
 }

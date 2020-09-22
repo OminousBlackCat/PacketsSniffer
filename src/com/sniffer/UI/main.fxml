@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.chart.BubbleChart?>
 <VBox fx:controller="com.sniffer.UI.Controller"
       stylesheets="@style.css"
       xmlns:fx="http://javafx.com/fxml"
@@ -16,6 +17,7 @@
         <Button text="保存文件夹" fx:id="saveDirectoryButton" onAction="#onDirectory"/>
         <Label text="----------" fx:id="timeLabel"/>
         <Label text="----------" fx:id="ipLabel"/>
+        <Button text="仅本机IP" onAction=""
         <Label text="当前已探测报文数:" fx:id="numberLabel"/>
         <Label text="已显示:" fx:id="showNumberLabel"/>
         <Button text="暂停" fx:id="pauseButton" onAction="#onPause"/>

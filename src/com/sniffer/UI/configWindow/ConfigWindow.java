@@ -33,7 +33,7 @@ public class ConfigWindow extends Application {
         fxmlLoader.setBuilderFactory(new JavaFXBuilderFactory());
         Parent root = fxmlLoader.load();
 
-        primaryStage.setTitle("参数配置");
+        primaryStage.setTitle("参数配置窗口");
         Scene scene = new Scene(root, 720, 310);
         primaryStage.setScene(scene);
         primaryStage.getIcons().add(new Image("file:" + System.getProperty("user.dir") + File.separator + "icon.png"));
