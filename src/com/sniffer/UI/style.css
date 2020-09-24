@@ -7,6 +7,7 @@
 }
 .filterLabel{
     -fx-pref-width: 120;
+    -fx-text-fill: #ffffff;
 }
 
 .filterCombo{
@@ -25,4 +26,15 @@
 #filterBox{
     -fx-spacing: 5;
     -fx-padding: 5;
+    -fx-background-color: #000000;
+}
+
+#titleButtonLeftBox{
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+
+#titleIpBox{
+    -fx-spacing: 10;
+    -fx-alignment: center;
 }

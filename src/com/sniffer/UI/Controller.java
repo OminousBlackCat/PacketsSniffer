@@ -18,11 +18,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.pcap4j.core.PcapPacket;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -58,9 +61,9 @@ public class Controller {
     @FXML
     private TextArea detailArea;
     @FXML
-    private Button configButton;
+    private ImageView configImg;
     @FXML
-    private Button saveDirectoryButton;
+    private ImageView saveDirectoryImg;
     @FXML
     private Label timeLabel;
     @FXML
@@ -94,6 +97,11 @@ public class Controller {
     private PacketRepository repo;
     private CONFIG mainConfig = CONFIG.getInstance();
 
+    private Image configTemp = new Image("file:"+System.getProperty("user.dir")+File.separator+"config.png");
+    private Image directoryTemp = new Image("file:" + System.getProperty("user.dir") + File.separator + "directory.png");
+    private Image configMouse = new Image("file:" + System.getProperty("user.dir") + File.separator + "config_mouse.png");
+    private Image directoryMouse = new Image("file:" + System.getProperty("user.dir") + File.separator + "directory_mouse.png");
+
     private boolean isListUpdate = true;
     private boolean isSearch = false;
 
@@ -103,15 +111,6 @@ public class Controller {
     }
 
     public void init(){
-//        Application test = new ConfigWindow();
-//        Stage testStage = new Stage();
-//        try {
-//            test.start(testStage);
-//            System.out.printf("LOADING*******************************************************************");
-//        }catch (Exception e){
-//            e.printStackTrace();
-//        }
-//        testStage.show();
 
         bindSize();
         mainList.setCellFactory(new Callback<ListView<PcapPacket>, ListCell<PcapPacket>>() {
@@ -122,6 +121,9 @@ public class Controller {
         });
         mainList.setItems(observableList);
         repo = PacketRepository.getInstance();
+
+        configImg.setImage(configTemp);
+        saveDirectoryImg.setImage(directoryTemp);
 
         try{
             mainThread = new SnifferThread();
@@ -139,6 +141,7 @@ public class Controller {
         showDetail();
 
 
+
         filter_EtherProtocol.getItems().setAll("---","IPv6","IPv4","ARP");
         filter_DownProtocol.getItems().setAll("---","TCP","UDP","IGMP","ICMP","DNS","HTTP(S)","IPV6_HOPOPT");
         filter_EtherProtocol.getSelectionModel().selectFirst();
@@ -149,8 +152,12 @@ public class Controller {
     private void bindSize(){
 
         menuBox.prefWidthProperty().bind(rootBox.widthProperty());
-        menuBox.setPrefHeight(40);
+        menuBox.setPrefHeight(60);
         menuBox.spacingProperty().bind(rootBox.widthProperty().multiply(0.05));
+        configImg.fitHeightProperty().bind(menuBox.heightProperty());
+        configImg.fitWidthProperty().bind(menuBox.heightProperty());
+        saveDirectoryImg.fitWidthProperty().bind(menuBox.heightProperty());
+        saveDirectoryImg.fitHeightProperty().bind(menuBox.heightProperty());
 
         mainBox.prefWidthProperty().bind(rootBox.widthProperty());
         mainBox.prefHeightProperty().bind(rootBox.heightProperty().subtract(40));
@@ -218,7 +225,7 @@ public class Controller {
                         e.printStackTrace();
                     }
                     Platform.runLater(()->{
-                        timeLabel.setText("系统时间:" + new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date()));
+                        timeLabel.setText("  系统时间:" + new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date()));
                     });
                 }
             }
@@ -366,6 +373,29 @@ public class Controller {
     private void filter_cancel(){
         isSearch = false;
         mainList.setItems(observableList);
+    }
+
+    @FXML
+    private void onOnlyLocalHost() {
+        filter_allIp.setText(mainConfig.getIpAddress());
+        filter_confirm();
+    }
+
+    @FXML
+    private void onConfigEnter(){
+        configImg.setImage(configMouse);
+    }
+    @FXML
+    private void onDirectoryEnter(){
+        saveDirectoryImg.setImage(directoryMouse);
+    }
+    @FXML
+    private void onConfigExited(){
+        configImg.setImage(configTemp);
+    }
+    @FXML
+    private void onDirectoryExited(){
+        saveDirectoryImg.setImage(directoryTemp);
     }
 
 
