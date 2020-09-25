@@ -4,14 +4,12 @@ import com.sniffer.UI.configWindow.CONFIG;
 import com.sniffer.UI.configWindow.ConfigWindow;
 import com.sniffer.net.PacketRepository;
 import com.sniffer.net.SnifferThread;
-import com.sniffer.util.DialogHelper;
-import com.sniffer.util.FilePathHelper;
-import com.sniffer.util.FormatHelper;
-import com.sniffer.util.SearchHelper;
+import com.sniffer.util.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -23,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Callback;
 import org.pcap4j.core.PcapPacket;
 
@@ -288,6 +287,26 @@ public class Controller {
         detail.start();
     }
 
+    public boolean saveToFile(){
+        boolean isWarning = false;
+        int fileCount = 1;
+        int packetCount = 0;
+        if(observableList.size()>=10000)
+            isWarning = true;
+        try {
+            for (PcapPacket packets : observableList) {
+                packetCount++;
+                if (packetCount >= 1000)
+                    fileCount++;
+                FileHelper.appendLine(FilePathHelper.PACKETSAVE_PATH + File.separator + Integer.toString(fileCount) + ".txt", packets);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return isWarning;
+    }
+
     @FXML
     private void onPause(){
         if(mainThread.isPause()){
@@ -312,13 +331,13 @@ public class Controller {
 
     @FXML
     private void onOpenConfig(){
-        Application config = new ConfigWindow();
+        ConfigWindow config = new ConfigWindow();
         Stage configStage = new Stage();
         try {
-            mainThread.changeStopFlag();
-            isListUpdate = false;
             config.start(configStage);
             configStage.showAndWait();
+            mainThread.changeStopFlag();
+            isListUpdate = false;
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -334,6 +353,7 @@ public class Controller {
         }catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     @FXML

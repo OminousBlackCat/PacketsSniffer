@@ -29,7 +29,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        Application config = new ConfigWindow();
+        ConfigWindow config = new ConfigWindow();
         Stage configStage = new Stage();
         config.start(configStage);
         configStage.showAndWait();
@@ -59,7 +59,7 @@ public class Main extends Application {
             public void handle(WindowEvent event) {
                 if(DialogHelper.popConfirmationDialog("确认","确认退出？")) {
                     if (DialogHelper.popConfirmationDialog("确认", "是否保存当前结果至txt文本中？"))
-                        ;//
+                        controller.saveToFile();
                     System.exit(0);
                 }
                 event.consume();

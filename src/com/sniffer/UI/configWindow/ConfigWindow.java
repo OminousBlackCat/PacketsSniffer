@@ -1,5 +1,6 @@
 package com.sniffer.UI.configWindow;
 
+import com.sniffer.util.DialogHelper;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -45,7 +46,10 @@ public class ConfigWindow extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.exit(0);
+                if(DialogHelper.popConfirmationDialog("确定","是否退出？"))
+                    System.exit(0);
+                else
+                    event.consume();
             }
         });
     }
